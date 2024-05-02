@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "springboot-react-420006",
+  "private_key_id": "2816a0fd1db4a9be60782be34a750aeedd746479",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCeN82V69PvG+ES\nyHBXKcCaz+c9r7dXmIf2s+jne2qox6LS60rLkZLT3agM0w1yW8rNZfhen8QlRAis\nKJ8jhYtqcf0h5gBeFKxL12r1bTaDjCgN6Vn+dQiFMACtDKnKpS+EBmCy08bau3uN\nUzPODPfNVlcJH+xQsmToHoPAQpE8HnCuYmzcSez+3azOnUWbJI3x7caL+ipXgUZb\nyk4DB+PWy3a2JxyvGOEeMWkxwu0ZykDZsGLAYWNXKENqFafPjcb/eN5efMeRBx5a\nBXFAEim1+zQ1UCbn2h92xiuMHjqEz1MAGrl6NdvVx1Onx37/XwdicThFx+y86rM0\nDYeDnZmrAgMBAAECggEAFXZIYv/cfeDwRRX/dzNotxdgrNN7MVy1hNeezlfFfiOm\niKn2OWsD2c2FkEfI2SxudDJS4LMXbl6uNnxEKhNheA0CY2jJv/lZ7efI0IYCERIg\nFNMErCnAACEk1lSTa7PAoE4lK9ziaqVn+yHAM0E7FBWUNN6ptcCdQ4dwI9Jj1R2t\nXBtUBCSris2XZliNWrXYz4wVOfPxuhYak0SI+hsSdk7IIr7puhOKN1QPId3k4+Lc\nAOxxp2Snc+VjZTA21hPUM7Irk4QqgMeyZRxdRjRqB1w8nHSiG6XNDMI7Scq1uckR\nHaoJLI5/gaZKSizGaMUI36of9aLItdF7gZjznmMy4QKBgQDMJKZ78Lx/MMrd4CHy\nNKPC+xE0xyF00pTIsEodGayuLYlE7Rk65N5q1f5pnki9+S15SX3moTOPv+6HDkw2\nHv/q0Z1Wvm9yr4lhDJ6JxpFFMytaov6+l40YCjre4Iec7w0FjT4hFBvMpQJ+DAfE\nG/+IYiKmmhvabbPhbB3SVbD74wKBgQDGaKfz7h/WwRUbL62c6PlKb0MtcPUrS65x\nxC0T3cdaQB2q+WboJ34CjZcyUUYKcnWBIi6cCGvFoy481NuzR4sWa0xgAqiLKeEr\nG8ruispRFHTapVhq5bMBec+pKeOwSdQwHOZrZtwlL8uwkBWkRG7TeD50MKHs21T1\nvtLRl3flmQKBgQCFbl8zG4LZT7cJlvoZKbbwNtJkQNPpW8rL8g4/PwzTPAhA+QhI\nqleGVSDZQBAju76xTAvytuLQzo7Fz96YcWKsxR2mGQsXVwzgVjM5soQ5StzHfUos\noTojwGwCSZfaR5WnT06QqGgTNreOU6av0+0N47bqVkhmWNX+PYCwfjoUKQKBgG/W\n4oV/vvbBE/KlJ4oBUTSCDy34NFrZaFW8rWQ7aXoYFiEgQL+wMzmhMo8sfPy6lD3c\nVMWjgYyAdTnZCpa+R0q15PFhzjvTuZchLXzVQ0H88/mjpnlrTUIRtdq3QB9JHpCY\nWdJEwuc7T+gQ8AIOiSIu75VzLHNlFzkG/bMjXHRRAoGAQStRkq6on+3YfjkaqtTV\nUWgaRjuB0DJokt56BNUFjgf7BTUv+pf4BX6XhwOqziYxoknKcppAKSRpNivf9VDm\n7zJsUljgQkkxN2L+V+YEQ7JA8R/v7w3J9Gs1xKMFJLsA5mOj4mT+O+wy+QJY9PSw\n5ZxhHvspjMJ9SM4qiTZ1kvg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "googledriveupload@springboot-react-420006.iam.gserviceaccount.com",
+  "client_id": "111408864088877218746",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/googledriveupload%40springboot-react-420006.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

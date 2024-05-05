@@ -164,4 +164,18 @@ public class BuildingController {
         }
     }
 
+    @GetMapping("/admin/search")
+    public ResponseEntity<?> getBuildingEditList(
+            @RequestParam Map<String,Object> params,
+            @RequestParam(value="type",required = false) List<String> type,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int limit){
+        try{
+            return ResponseEntity.ok().body(buildingService.getBuildingEdits(params,page,limit,type));
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 }

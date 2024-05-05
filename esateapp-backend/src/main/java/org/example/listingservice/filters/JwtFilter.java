@@ -75,8 +75,10 @@ public class JwtFilter extends OncePerRequestFilter {
         final List<Pair<String,String>> bypassTokens = Arrays.asList(
                 Pair.of(String.format("%s/users/login",apiPrefix),"POST"),
                 Pair.of(String.format("%s/users/register",apiPrefix),"POST"),
-                Pair.of(String.format("%s/like/**", apiPrefix), "GET"),
-                Pair.of(String.format("%s/users/refreshToken**", apiPrefix), "POST")
+                Pair.of(String.format("%s/users/refreshToken*", apiPrefix), "POST"),
+                Pair.of(String.format("%s/buildings/search",apiPrefix),"GET"),
+                Pair.of(String.format("%s/buildings/relations**",apiPrefix),"GET"),
+                Pair.of(String.format("%s/buildings/building-edit**", apiPrefix), "GET")
         );
         String requestPath = request.getServletPath();
         String requestMethod = request.getMethod();
@@ -84,8 +86,7 @@ public class JwtFilter extends OncePerRequestFilter {
         for(Pair<String,String> token : bypassTokens){
             String path = token.getFirst();
             String method = token.getSecond();
-            if(requestPath.matches(path.replace("**",".*"))
-                    && requestMethod.equalsIgnoreCase(method)){
+            if (requestPath.startsWith(path.replace("**", "/")) && requestMethod.equalsIgnoreCase(method)) {
                 return true;
             }
         }

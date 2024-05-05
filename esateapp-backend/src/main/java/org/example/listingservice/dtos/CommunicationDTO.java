@@ -10,7 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommunicationDTO {
-    private Long id;
     private String phone;
     private String note;
     @JsonProperty("buyer_id")

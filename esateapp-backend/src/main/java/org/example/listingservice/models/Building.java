@@ -17,17 +17,17 @@ import java.util.List;
 @Table(name = "building")
 @Builder
 public class Building extends BaseEntity {
-    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<RentArea> rentAreas = new ArrayList<>();
 
-    @OneToMany(mappedBy="building", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="building", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BuildingImage> images = new ArrayList<>();
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="owner_id")
     private User user;
 
-    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Love> likes = new ArrayList<>();
 
     private String name;

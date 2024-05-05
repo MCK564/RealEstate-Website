@@ -42,12 +42,20 @@ public class WebSecurityConfig2 {
 //                }).csrf(AbstractHttpConfigurer::disable);
 //        return http.build();
 //    }
+
+
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
     http
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-            .authorizeHttpRequests(requests -> requests
-                    .requestMatchers("/**").permitAll()
+            .authorizeHttpRequests(requests -> {
+                        requests
+                                .requestMatchers(GET,
+                                        String.format("%s/buildings/admin/search**",apiPrefix)).hasRole("ADMIN")
+                                .requestMatchers(GET,
+                                        String.format("%s/users/search**",apiPrefix)).hasRole("ADMIN")
+                                .requestMatchers("/**").permitAll();
+                    }
             )
             .csrf(AbstractHttpConfigurer::disable);
     return http.build();

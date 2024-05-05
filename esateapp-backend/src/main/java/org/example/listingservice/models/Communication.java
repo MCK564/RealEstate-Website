@@ -19,15 +19,15 @@ public class Communication {
     private String phone;
     private String note;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="buyer_renter_id")
     private User buyerRenter;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="sale_id")
     private User saler;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="building_id")
     private Building building;
 }

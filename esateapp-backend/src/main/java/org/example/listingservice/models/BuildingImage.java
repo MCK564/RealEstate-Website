@@ -24,7 +24,7 @@ public class BuildingImage extends  BaseEntity{
     @Column(name="description")
     private String description;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="building_id")
     private Building building;
 }

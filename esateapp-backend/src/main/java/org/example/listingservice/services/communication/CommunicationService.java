@@ -76,9 +76,7 @@ public class CommunicationService implements ICommunicationService{
     @Override
     public CommunicationResponse createOrUpdate(CommunicationDTO dto) throws DataNotFoundException {
         Communication updateCommunication;
-        if(dto.getId()!=null){
-            updateCommunication = communicationRepository.findById(dto.getId()).get();
-        }
+
         updateCommunication = Communication.builder()
                 .phone(dto.getPhone())
                 .note(dto.getNote())

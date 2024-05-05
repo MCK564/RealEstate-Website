@@ -17,7 +17,7 @@ public class RentArea extends BaseEntity {
 	@Column(name = "value")
 	private Long value;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="buildingid")
 	private Building building;
 }

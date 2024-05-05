@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,51 +21,42 @@ public class BuildingDTO {
     private String district;
     @JsonProperty("structure")
     private String structure;
-    @JsonProperty("numberofbasement")
-    private Integer numberOfBasement;
-    @JsonProperty("floorarea")
-    private Integer floorArea;
+    @JsonProperty("number_of_basement")
+    private Integer numberOfBasement; // Thay đổi thành "number_of_basement"
+    @JsonProperty("floor_area")
+    private Integer floorArea; // Thay đổi thành "floor_area"
     @JsonProperty("direction")
     private String direction;
     @JsonProperty("level")
     private String level;
-    @JsonProperty("rentprice")
-    private Integer rentPrice;
-    @JsonProperty("rentpricedescription")
+    @JsonProperty("rent_price")
+    private Integer rentPrice; // Thay đổi thành "rent_price"
+    @JsonProperty("description")
     private String rentPriceDescription;
-    @JsonProperty("servicefee")
-    private String serviceFee;
-    @JsonProperty("carfee")
-    private String carFee;
+    @JsonProperty("service_fee")
+    private String serviceFee; // Thay đổi thành "service_fee"
+    @JsonProperty("car_fee")
+    private String carFee; // Thay đổi thành "car_fee"
+    @JsonProperty("rent_areas")
     private List<Integer> rentAreas;
-    @JsonProperty("motorbikefee")
-    private String motorbikeFee;
-    @JsonProperty("overtimefee")
-    private String overtimeFee;
-    @JsonProperty("waterfee")
-    private String waterFee;
-    @JsonProperty("electricityfee")
-    private String electricityFee;
-    @JsonProperty("deposit")
-    private String deposit;
-    @JsonProperty("payment")
-    private String payment;
-    @JsonProperty("renttime")
-    private String rentTime;
-    @JsonProperty("decorationtime")
-    private String decorationTime;
-    @JsonProperty("brokeragefee")
-    private BigDecimal brokerageFee;
-    @JsonProperty("note")
-    private String note;
-    @JsonProperty("linkofbuilding")
-    private String linkOfBuilding;
-    @JsonProperty("map")
-    private String map;
-    @JsonProperty("managername")
-    private String managerName;
-    @JsonProperty("managerphonenumber")
-    private String managerPhoneNumber;
+    @JsonProperty("motorbike_fee")
+    private String motorbikeFee; // Thay đổi thành "motorbike_fee"
+    @JsonProperty("overtime_fee")
+    private String overtimeFee; // Thay đổi thành "overtime_fee"
+    @JsonProperty("water_fee")
+    private String waterFee; // Thay đổi thành "water_fee"
+    @JsonProperty("electricity_fee")
+    private String electricityFee; // Thay đổi thành "electricity_fee"
+    @JsonProperty("decoration_time")
+    private String decorationTime; // Thay đổi thành "decoration_time"
+    @JsonProperty("brokerage_fee")
+    private BigDecimal brokerageFee; // Thay đổi thành "brokerage_fee"
+    @JsonProperty("link_of_building")
+    private String linkOfBuilding; // Thay đổi thành "link_of_building"
+    @JsonProperty("manager_name")
+    private String managerName; // Thay đổi thành "manager_name"
+    @JsonProperty("manager_phone_number")
+    private String managerPhoneNumber; // Thay đổi thành "manager_phone_number"
     @JsonProperty("status")
     private Integer status;
     @JsonProperty("type")

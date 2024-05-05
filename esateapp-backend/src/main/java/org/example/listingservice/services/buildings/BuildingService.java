@@ -7,6 +7,7 @@ import org.example.listingservice.converter.Converter;
 import org.example.listingservice.dtos.BuildingDTO;
 import org.example.listingservice.exceptions.DataNotFoundException;
 import org.example.listingservice.models.Building;
+import org.example.listingservice.responses.building.BuildingEditListResponse;
 import org.example.listingservice.responses.building.BuildingEditResponse;
 import org.example.listingservice.models.RentArea;
 import org.example.listingservice.models.User;
@@ -39,9 +40,6 @@ public class BuildingService  implements  IbuildingService{
     @Override
     public BuildingListResponse findByCondition(Map<String, Object> conditions, int page, int limit, List<String> type) {
         int totalPages = 0;
-//        Sort.Direction direction = Sort.Direction.ASC;
-//        Sort sort;
-//        sort = Sort.by(direction);
         PageRequest pageRequest = PageRequest.of(page,limit);
         BuildingSearchBuilder builder = converter.toBuildingSearchBuilder(conditions,type);
         Specification<Building> spec = Specifications.searchProductByConditions(builder,type);
@@ -66,17 +64,17 @@ public class BuildingService  implements  IbuildingService{
 
     @Override
     public ResponseEntity<?> createOrUpdate(BuildingDTO dto) throws DataNotFoundException {
-        Building newBuilding = converter.toBuildingFromBuildingDTO(dto);
+        Building building = converter.toBuildingFromBuildingDTO(dto);
         if(dto.getId()!=null){
-            Building existingBuilding = buildingRepository.findById(dto.getId()).orElseThrow(()
+            building =  buildingRepository.findById(dto.getId()).orElseThrow(()
                     ->new DataNotFoundException(MessageKeys.DATA_NOT_FOUND));
-            rentAreaRepository.deleteAllByBuilding_Id(existingBuilding.getId());
+            rentAreaRepository.deleteAllByBuilding_Id(building.getId());
         }
 
         User owner = userRepository.findById(dto.getOwnerId()).orElseThrow(()
                 ->new DataNotFoundException(MessageKeys.DATA_NOT_FOUND));
-        newBuilding.setUser(owner);
-        Building savedBuilding = buildingRepository.saveAndFlush(newBuilding);
+        building.setUser(owner);
+        Building savedBuilding = buildingRepository.saveAndFlush(building);
         List<RentArea> rentAreas =new ArrayList<>();
         for(Integer value:dto.getRentAreas()){
             RentArea newRentArea = RentArea.builder()
@@ -98,6 +96,7 @@ public class BuildingService  implements  IbuildingService{
                 .stream().map(BuildingResponse::fromBuilding).toList();
         return BuildingListResponse.builder().buildings(buildingResponses).build();
     }
+
 
     @Override
     public BuildingListResponse getRelativeBuildingsByBuildingId(Long id) throws DataNotFoundException {
@@ -141,6 +140,33 @@ public class BuildingService  implements  IbuildingService{
         Building existingBuilding = buildingRepository.findById(id)
                 .orElseThrow(()-> new DataNotFoundException("Can not find building with id = "+id));
         return BuildingEditResponse.fromBuilding(existingBuilding);
+    }
+
+    @Override
+    public BuildingEditListResponse getBuildingEdits(Map<String, Object> conditions, int page, int limit, List<String> type) {
+        int totalPages = 0;
+        PageRequest pageRequest = PageRequest.of(page,limit);
+        BuildingSearchBuilder builder = converter.toBuildingSearchBuilder(conditions,type);
+        Specification<Building> spec = Specifications.searchProductByConditions(builder,type);
+        Page<Building> pages = buildingRepository.findAll(spec,pageRequest);
+        totalPages = pages.getTotalPages();
+        List<Building> buildings = pages.getContent();
+        List<BuildingEditResponse> buildingResponses = buildings
+                .stream().map(BuildingEditResponse::fromBuilding).toList();
+        return BuildingEditListResponse.builder()
+                .totalPages(totalPages)
+                .buildingEditResponses(buildingResponses)
+                .build();
+    }
+
+    @Override
+    public BuildingEditListResponse getBuildingEditsByUserId(Long id) {
+        List<Building> buildings = buildingRepository.findTop30BuildingsWithMostLikes();
+        List<BuildingEditResponse> buildingResponses = buildings
+                .stream().map(BuildingEditResponse::fromBuilding).toList();
+        return BuildingEditListResponse.builder()
+                .buildingEditResponses(buildingResponses)
+                .build();
     }
 
 

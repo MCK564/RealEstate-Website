@@ -2,6 +2,7 @@ package org.example.listingservice.services.buildings;
 
 import org.example.listingservice.dtos.BuildingDTO;
 import org.example.listingservice.exceptions.DataNotFoundException;
+import org.example.listingservice.responses.building.BuildingEditListResponse;
 import org.example.listingservice.responses.building.BuildingEditResponse;
 import org.example.listingservice.responses.building.BuildingListResponse;
 import org.example.listingservice.responses.building.BuildingResponse;
@@ -23,5 +24,7 @@ public interface IbuildingService {
 
     BuildingResponse getById(Long id) throws DataNotFoundException;
     BuildingEditResponse getBuildingEditById(Long id) throws DataNotFoundException;
+    BuildingEditListResponse getBuildingEdits(Map<String,Object> conditions, int page, int limit, List<String> type);
+    BuildingEditListResponse getBuildingEditsByUserId (Long id);
 
 }

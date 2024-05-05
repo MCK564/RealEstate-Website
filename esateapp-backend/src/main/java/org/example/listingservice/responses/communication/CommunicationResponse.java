@@ -22,6 +22,7 @@ public class CommunicationResponse {
     private UserResponse saler;
     private String message;
 
+
     public static CommunicationResponse fromCommunication(Communication cm){
         return CommunicationResponse.builder()
                 .id(cm.getId())

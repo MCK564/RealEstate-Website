@@ -26,6 +26,8 @@ public class UserResponse {
     @JsonProperty("role_code")
     private String roleCode;
     private String avatar;
+    @JsonProperty("number_of_post")
+    private int numberOfPost;
 
     public static UserResponse fromUser(User user){
         return UserResponse.builder()
@@ -36,6 +38,7 @@ public class UserResponse {
                 .status(user.getStatus())
                 .roleCode(user.getRole().getCode())
                 .avatar(user.getAvatar())
+                .numberOfPost(user.getBuildings().size())
                 .build();
     }
 }

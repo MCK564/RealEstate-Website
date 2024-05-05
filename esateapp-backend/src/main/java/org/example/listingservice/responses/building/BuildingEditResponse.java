@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Builder
 public class BuildingEditResponse {
+    private Long id;
     @JsonProperty("rent_areas")
     private List<Long> rentAreas;
     @JsonProperty("images")
@@ -103,6 +104,7 @@ public class BuildingEditResponse {
         String[] types = b.getType().split(",");
 
         return BuildingEditResponse.builder()
+                .id(b.getId())
                 .rentAreas(b.getRentAreas().stream().map(RentArea::getValue).collect(Collectors.toList()))
                 .images(b.getImages().stream().map(BuildingImage::getImageUrl).collect(Collectors.toList()))
                 .likes(b.getLikes().stream().map(love -> UserResponse.fromUser(love.getUser())).collect(Collectors.toList()))

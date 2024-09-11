@@ -9,8 +9,6 @@ import java.util.List;
 
 @Builder
 @Data
-@Getter
-@Setter
 public class BuildingSearchBuilder {
     private String name;
     private String street;

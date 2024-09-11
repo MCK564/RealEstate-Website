@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

@@ -7,8 +7,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@Getter
-@Setter
 public class BuildingListResponse {
     private int totalPages;
     private List<BuildingResponse> buildings;

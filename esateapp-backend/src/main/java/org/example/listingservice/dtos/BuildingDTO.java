@@ -31,7 +31,7 @@ public class BuildingDTO {
     private String level;
     @JsonProperty("rent_price")
     private Integer rentPrice; // Thay đổi thành "rent_price"
-    @JsonProperty("description")
+    @JsonProperty("rent_price_description")
     private String rentPriceDescription;
     @JsonProperty("service_fee")
     private String serviceFee; // Thay đổi thành "service_fee"

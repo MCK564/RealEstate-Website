@@ -3,13 +3,11 @@ package org.example.listingservice.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 @Table(name = "love")
 @Builder
 public class Love  {

@@ -13,5 +13,7 @@ public interface TokenRepository extends JpaRepository<Token, Long> {
     Token findByToken(String token);
     Token findByRefreshToken(String token);
     boolean existsByToken(String token);
+
+    void deleteByUser(User user);
 }
 

@@ -1,12 +1,9 @@
 server:
   port: 8080
 
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://127.0.0.1:8761/eureka
-#  instance:
-#    prefer-ip-address: true
+eureka:
+  client:
+    enabled: false
 
 spring:
   application:
@@ -28,7 +25,10 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-
+  flyway:
+    locations: classpath:/db/migration,classpath:/dev/db/migration
+    baseline-on-migrate: true
+    baseline-version: 2
 api:
   prefix: /api/v1
 
@@ -36,3 +36,18 @@ jwt:
   expiration: 2592000 # 30days
   expiration-refresh-token: 5184000
   secretKey: e672a8b64e2a5ab5da300537341d7af496f0059c56838a9a7c634591d2ad6b71
+
+vnpay:
+  tmn_code: 8P4G7F3D
+  hash_secret: I8YCTHZ8K6VAYTCTRNFZJQHKO92AVPOC
+  url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+  return_url: http://localhost:8000/vnpay-return
+
+logging:
+  file:
+    name: classpath:logs/application.log
+  level:
+    root: INFO
+    org:
+      springframework.security: DEBUG
+

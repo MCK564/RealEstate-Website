@@ -10,8 +10,6 @@ import java.util.List;
 
 @Data
 @Builder
-@Setter
-@Getter
 public class LikeListResponse {
     private List<LikeResponse> likes = new ArrayList<>();
     int totalLikes;

@@ -2,12 +2,9 @@ package org.example.listingservice.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+@Data
 @Entity
 @Table(name = "communication")
-@Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

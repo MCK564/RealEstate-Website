@@ -4,13 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-@Data
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Data
 @Builder
 @Table(name = "rentarea")
 public class RentArea extends BaseEntity {

@@ -12,11 +12,13 @@ import org.example.listingservice.services.buildingImage.BuildingImageService;
 import org.example.listingservice.services.buildings.BuildingService;
 import org.example.listingservice.services.buildings.BuildingService;
 import org.example.listingservice.utils.LocalizationUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 import java.util.Map;
 
@@ -24,19 +26,19 @@ import java.util.Map;
 @RestController
 @RequestMapping("${api.prefix}/buildings")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class BuildingController {
     private final DriveService driveService;
     private final BuildingService buildingService;
     private final LocalizationUtils localizationUtils;
     private final BuildingImageService buildingImageService;
+
+
     @GetMapping("/search")
     public ResponseEntity<?> getAllBuildingByKeyword(
             @RequestParam Map<String,Object> params,
             @RequestParam(value="type",required = false) List<String> type,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int limit
-            ){
+            @RequestParam(defaultValue = "20") int limit){
         try{
             return ResponseEntity.ok(buildingService.findByCondition(params,page,limit,type));
         }catch(Exception e){

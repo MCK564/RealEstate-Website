@@ -8,8 +8,6 @@ import org.example.listingservice.responses.user.UserResponse;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

@@ -3,10 +3,8 @@ package org.example.listingservice.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.example.listingservice.constant.MessageKeys;
-import org.example.listingservice.dtos.LoginDTO;
-import org.example.listingservice.dtos.PasswordDTO;
-import org.example.listingservice.dtos.RegisterDTO;
-import org.example.listingservice.dtos.UserDTO;
+import org.example.listingservice.dtos.*;
+import org.example.listingservice.services.token.TokenService;
 import org.example.listingservice.services.user.UserService;
 import org.example.listingservice.utils.LocalizationUtils;
 import org.springframework.http.HttpStatus;
@@ -28,6 +26,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final LocalizationUtils localizationUtils;
+    private final TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(
@@ -138,6 +137,17 @@ public class UserController {
         }catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/refresh-token")
+    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenDTO dto){
+        String requestRefreshToken = dto.getRefreshToken();
+        try{
+            return ResponseEntity.ok().body("");
+        }catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
 }

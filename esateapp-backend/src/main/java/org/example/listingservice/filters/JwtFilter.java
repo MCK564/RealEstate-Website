@@ -78,7 +78,11 @@ public class JwtFilter extends OncePerRequestFilter {
                 Pair.of(String.format("%s/users/refreshToken*", apiPrefix), "POST"),
                 Pair.of(String.format("%s/buildings/search",apiPrefix),"GET"),
                 Pair.of(String.format("%s/buildings/relations**",apiPrefix),"GET"),
-                Pair.of(String.format("%s/buildings/building-edit**", apiPrefix), "GET")
+                Pair.of(String.format("%s/buildings/building-edit**", apiPrefix), "GET"),
+                Pair.of(String.format("%s/payments/**",apiPrefix),"GET"),
+                Pair.of(String.format("%s/swagger-ui.html",apiPrefix),"GET")
+
+
         );
         String requestPath = request.getServletPath();
         String requestMethod = request.getMethod();

@@ -11,16 +11,18 @@ import java.util.Collection;
 import java.util.List;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
 @Builder
 public class User extends BaseEntity implements UserDetails {
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Building> buildings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Payment> payments = new ArrayList<>();
 
     @Column(name = "fullname", nullable = false)
     private String fullName;

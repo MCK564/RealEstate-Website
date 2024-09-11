@@ -17,6 +17,10 @@ import org.example.listingservice.repositories.Specifications;
 import org.example.listingservice.repositories.UserRepository;
 import org.example.listingservice.responses.building.BuildingListResponse;
 import org.example.listingservice.responses.building.BuildingResponse;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -37,6 +41,7 @@ public class BuildingService  implements  IbuildingService{
     private final RentAreaRepository rentAreaRepository;
     private final UserRepository userRepository;
 
+
     @Override
     public BuildingListResponse findByCondition(Map<String, Object> conditions, int page, int limit, List<String> type) {
         int totalPages = 0;
@@ -56,6 +61,10 @@ public class BuildingService  implements  IbuildingService{
 
     @Override
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value="buildingsByOwner", key="#id"),
+            @CacheEvict(value="buildings",key="#id")
+    })
     public void deleteById(Long id) {
         if(buildingRepository.existsById(id)){
             buildingRepository.deleteById(id);
@@ -63,6 +72,7 @@ public class BuildingService  implements  IbuildingService{
     }
 
     @Override
+    @CachePut(value="buildings", key="#dto.id")
     public ResponseEntity<?> createOrUpdate(BuildingDTO dto) throws DataNotFoundException {
         Building building = converter.toBuildingFromBuildingDTO(dto);
         if(dto.getId()!=null){
@@ -74,6 +84,8 @@ public class BuildingService  implements  IbuildingService{
         User owner = userRepository.findById(dto.getOwnerId()).orElseThrow(()
                 ->new DataNotFoundException(MessageKeys.DATA_NOT_FOUND));
         building.setUser(owner);
+        building.setDistrict(dto.getDistrict());
+        building.setRentPriceDescription(dto.getRentPriceDescription());
         Building savedBuilding = buildingRepository.saveAndFlush(building);
         List<RentArea> rentAreas =new ArrayList<>();
         for(Integer value:dto.getRentAreas()){
@@ -90,6 +102,7 @@ public class BuildingService  implements  IbuildingService{
     }
 
     @Override
+    @Cacheable(value="buildingsByOwner", key="#id")
     public BuildingListResponse findByOwnerId(Long id) {
         List<Building> buildings = buildingRepository.findByUser_Id(id);
         List<BuildingResponse> buildingResponses = buildings
@@ -99,6 +112,7 @@ public class BuildingService  implements  IbuildingService{
 
 
     @Override
+    @Cacheable(value="relativeBuildingsById", key="#id")
     public BuildingListResponse getRelativeBuildingsByBuildingId(Long id) throws DataNotFoundException {
         Building existingBuilding = buildingRepository.findById(id)
                 .orElseThrow(()-> new DataNotFoundException("Can not find building with id = "+id));

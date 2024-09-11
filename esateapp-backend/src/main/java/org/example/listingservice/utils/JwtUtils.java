@@ -4,7 +4,9 @@ package org.example.listingservice.utils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.example.listingservice.constant.MessageKeys;
 import org.example.listingservice.exceptions.InvalidParamException;
 import org.example.listingservice.models.Token;
 import org.example.listingservice.models.User;
@@ -39,13 +41,7 @@ public class JwtUtils {
         claims.put("email", user.getEmail());
         claims.put("userId",user.getId());
         try{
-            String token = Jwts.builder()
-                    .claims(claims)
-                    .subject(user.getPhone())
-                    .expiration(new Date(System.currentTimeMillis() + expiration))
-                    .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                    .compact();
-            return token;
+            return  createToken(claims, user.getPhone());
         }catch(Exception e){
             throw new InvalidParamException("Cannot create jwt token, error: "+e.getMessage());
         }
@@ -93,6 +89,26 @@ public class JwtUtils {
                 logger.error("JWT claims string is empty: {}", e.getMessage());
             }
             return false;
+    }
+
+    public String extractTokenFromRequest(HttpServletRequest request) throws Exception{
+       final String authHeader = request.getHeader("Authorization");
+       if(authHeader == null || !authHeader.startsWith("Bearer ")){
+           return MessageKeys.UNAUTHORIZED;
+       }
+        
+       final String token = authHeader.substring(7);
+       return token;
+    }
+    
+    public String createToken(Map<String, Object> claims, String subject){
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSignInKey())
+                .compact();
     }
 
 }

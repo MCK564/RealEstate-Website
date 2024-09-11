@@ -5,8 +5,6 @@ import lombok.*;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PasswordDTO {
